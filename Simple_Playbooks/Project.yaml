@@ -1,0 +1,37 @@
+---
+
+- hosts: dev
+  become: yes
+  tasks:
+   - name: Install LAMP package on remote
+     apt:
+      pkg:
+       - apache2
+       - mysql-server
+       - php
+       - php-mysql
+      state: latest
+     notify:
+      - start apache
+      - start mysql-server
+      - deploy index.html
+  
+  handlers:
+    - name: start apache
+      service:
+       name: apache2
+       state: started
+       enabled: yes
+    - name: start mysql-server
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+    - name: deploy index.html
+      copy:
+        src: /home/romiovictor123/Documents/ansible/Simple_Playbooks/index.html
+        dest: /var/www/html/index.html
+
+...
+
+  

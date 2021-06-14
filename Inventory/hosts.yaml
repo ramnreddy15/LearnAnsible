@@ -1,0 +1,10 @@
+[dev]
+dev.testlab.com
+
+[prod]
+prod.testlab.com
+
+[all]
+dev.testlab.com
+prod.testlab.com
+
